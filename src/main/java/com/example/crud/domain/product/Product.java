@@ -28,8 +28,11 @@ public class Product {
 
     private Integer price_in_cents;
 
+    private Boolean active;
+
     public Product(RequestProductDTO request) {
         this.name = request.name();
         this.price_in_cents = request.price_in_cents();
+        this.active = true;
     }
 }

@@ -21,7 +21,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity getAllProducts() {
-        List<Product> allProducts = repository.findAll();
+        List<Product> allProducts = repository.findAllByActiveTrue();
         return ResponseEntity.ok(allProducts);
     }
 
@@ -54,33 +54,28 @@ public class ProductController {
     public ResponseEntity updateProduct(@RequestBody @Valid RequestProductDTO data, @PathVariable UUID id) {
         try {
             Optional<Product> product = repository.findById(String.valueOf(id));
-
             if (product.isPresent()) {
                 product.get().setName(data.name());
                 product.get().setPrice_in_cents(data.price_in_cents());
                 repository.save(product.get());
                 return ResponseEntity.status(200).body(product);
             }
-
             return ResponseEntity.status(404).body("Produto não encontrado");
-
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity deleteProduct(@PathVariable UUID id) {
         try {
             Product product = repository.findById(String.valueOf(id)).orElse(null);
-
             if (product == null) {
                 return ResponseEntity.status(404).body("Produto não encontrado!");
             }
-            repository.delete(product);
-
+            product.setActive(false);
             return ResponseEntity.noContent().build();
-
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }
