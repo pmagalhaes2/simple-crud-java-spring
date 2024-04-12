@@ -22,17 +22,14 @@ This repository contains a simple CRUD project built using Java Spring. The aim 
 $  git  clone  https://github.com/pmagalhaes2/simple-crud-java-spring.git  
   
   
-  
 # Access the project folder in your terminal  
   
 $  cd  simple-crud-java-spring  
   
   
-  
 # Install dependencies with Maven  
   
-  
-  
+   
 # Run the application  
   
 $  \.mvnm spring-boot:run  
@@ -49,7 +46,8 @@ $  \.mvnm spring-boot:run
 
 The API provides the following endpoints:
 
-GET /product - Retrieves a list of all data.     GET /product/{id} - Retrieve a product based in searched id.  
+GET /product - Retrieves a list of all data.     
+GET /product/{id} - Retrieve a product based in searched id.  
 POST /product - Register a new data.  
 PUT /product/{id} - Alter data.  
 DELETE /product/{id} - Inactivate data.
@@ -58,7 +56,7 @@ DELETE /product/{id} - Inactivate data.
 
 The project uses PostgresSQL as the database. The necessary database migrations are managed using Flyway.
 
-To install PostgresSQL locally you can  [click here](https://www.postgresql.org/download/).
+To install PostgresSQL locally you can [click here](https://www.postgresql.org/download/).
   
 ---
 
